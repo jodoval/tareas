@@ -17,8 +17,8 @@ class CrearTasks extends Migration
           $table->increments('id');
           $table->string('texto');
           $table->enum('estado',['Pendiente','En proceso','Completada'])->default('Pendiente');
-          $table->integer('user-id')->unsigned();
-          $table->timestamp('created_at')->nullable();
+          $table->integer('user_id')->unsigned();
+          $table->timestamps();
       });
     }
 

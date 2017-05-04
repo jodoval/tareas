@@ -9,17 +9,22 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
+
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+
+                background-image: url("img/foto3.jpg");
+                  color: #FF0040;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
+
+
 
             .full-height {
                 height: 100vh;
@@ -39,18 +44,25 @@
                 position: absolute;
                 right: 10px;
                 top: 18px;
+
             }
 
             .content {
                 text-align: center;
+                font-family: 'Covered By Your Grace', cursive;
+
+                position: absolute;left:25%;150px;
+
+
             }
 
             .title {
-                font-size: 84px;
+                font-size: 120px;
+                top:30px;
             }
 
             .links > a {
-                color: #636b6f;
+                  color: #FF0040;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -65,6 +77,7 @@
         </style>
     </head>
     <body>
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -79,16 +92,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Diario de Tareas
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+
             </div>
         </div>
     </body>
