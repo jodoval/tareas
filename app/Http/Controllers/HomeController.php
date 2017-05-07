@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Task;
 use Auth;
 
+
 class HomeController extends Controller
 {
     /**
@@ -34,14 +35,19 @@ class HomeController extends Controller
       $tarea->texto=$request->texto;
       $tarea->user_id=Auth::id();
       $tarea->save();
+      alert()->success('Creada la Tarea')->persistent('Cerrar');  //usando sweet alerts
+      // session()->flash('msg','Tarea creada correctamente');
+      // session()->flash('tipoAlert','success');
       return redirect ('/home');
 
 
     } //fin crearTarea
 
 
-    public function cambiarEstado($id,$estado){
+    public function cambiarEstado($id=null,$estado=null){
         if (!isset($id) || !isset($estado)){
+          session()->flash('msg','No se ha podido realizar la operación');
+          session()->flash('tipoAlert','danger');
           return redirect ('/home');
         }
 
@@ -58,12 +64,16 @@ class HomeController extends Controller
           }
            $tarea->save();
         }
+        session()->flash('msg','Tarea cambiada correctamente');
+        session()->flash('tipoAlert','success');
         return redirect('/home');
 
     }  //fin cambiarEstado
 
-       public function eliminar($id){
+       public function eliminar($id=null){
          if (!isset($id)) {
+           session()->flash('msg','No se ha podido realizar la operación');
+           session()->flash('tipoAlert','danger');
            return redirect ('/home');
          }
 
@@ -72,6 +82,8 @@ class HomeController extends Controller
 
             $tarea->delete();
          }
+         session()->flash('msg','Tarea eliminada correctamente');
+         session()->flash('tipoAlert','success');
          return redirect('/home');
 
 
