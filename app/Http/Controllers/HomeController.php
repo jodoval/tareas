@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tareas=Task::where('user_id',Auth::id())->orderBy('created_at','desc')->get();
+        $tareas=Task::where('user_id',Auth::id())->orderBy('created_at','desc')->paginate(5);
         return view ('home',['tareas'=>$tareas]);
     }
 
@@ -38,4 +38,46 @@ class HomeController extends Controller
 
 
     } //fin crearTarea
-}
+
+
+    public function cambiarEstado($id,$estado){
+        if (!isset($id) || !isset($estado)){
+          return redirect ('/home');
+        }
+
+        $tarea=Task::find($id);
+        if ($tarea->user_id===Auth::id()) {   //controla que sea el usuario de la sesion
+          switch ($estado) {
+            case 1:
+              $tarea->estado="En proceso";
+              break;
+            case 2:
+              $tarea->estado="Completada";
+              break;
+
+          }
+           $tarea->save();
+        }
+        return redirect('/home');
+
+    }  //fin cambiarEstado
+
+       public function eliminar($id){
+         if (!isset($id)) {
+           return redirect ('/home');
+         }
+
+         $tarea=Task::find($id);
+         if ($tarea->user_id===Auth::id()) {   //controla que sea el usuario de la sesion
+
+            $tarea->delete();
+         }
+         return redirect('/home');
+
+
+       }  //fin eliminar
+
+
+
+
+}  //fin controlador

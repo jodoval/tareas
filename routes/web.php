@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
+Route::get('/cambiar-estado/{id}/{estado}', 'HomeController@cambiarEstado');
+Route::get('/eliminar/{id}', 'HomeController@eliminar');
 
 
 //post
