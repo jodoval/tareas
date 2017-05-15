@@ -31,6 +31,9 @@ class HomeController extends Controller
     }
 
     public function crearTarea (Request $request){
+      $this->validate ($request,[
+        'texto'=>'required|string|max:191'
+      ]);
       $tarea=new Task();
       $tarea->texto=$request->texto;
       $tarea->user_id=Auth::id();

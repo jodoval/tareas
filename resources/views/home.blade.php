@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="text-center">
-                {{$tareas->links()}}
+                {{$tareas->links()}}  {{-- indicadores de paginacion --}}
             </div>
         </div>
     </div>
