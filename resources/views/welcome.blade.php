@@ -78,7 +78,8 @@
     </head>
     <body>
 
-        <div class="flex-center position-ref full-height">
+      <div class="flex-center position-ref full-height">
+
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -92,7 +93,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Diario de Tareas
+                    {{__('messages.diario_de_tareas')}}
                 </div>
 
 

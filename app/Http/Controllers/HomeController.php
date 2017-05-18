@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use Auth;
-
+use App;
 
 class HomeController extends Controller
 {
@@ -16,6 +16,13 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+      $this->middleware(function ($request,$next){
+          if (session()->has('idioma')){
+            App::setlocale(session()->get('idioma'));
+          }
+        return $next($request);
+      });
+
         $this->middleware('auth');
     }
 
@@ -38,7 +45,8 @@ class HomeController extends Controller
       $tarea->texto=$request->texto;
       $tarea->user_id=Auth::id();
       $tarea->save();
-      alert()->success('Creada la Tarea')->persistent('Cerrar');  //usando sweet alerts
+
+      alert()->success(__('messages.creada_la_tarea'))->persistent(__('messages.cerrar'));  //usando sweet alerts
       // session()->flash('msg','Tarea creada correctamente');
       // session()->flash('tipoAlert','success');
       return redirect ('/home');
@@ -49,7 +57,7 @@ class HomeController extends Controller
 
     public function cambiarEstado($id=null,$estado=null){
         if (!isset($id) || !isset($estado)){
-          session()->flash('msg','No se ha podido realizar la operación');
+          session()->flash('msg',__('messages.no_se_ha_podido'));
           session()->flash('tipoAlert','danger');
           return redirect ('/home');
         }
@@ -67,7 +75,7 @@ class HomeController extends Controller
           }
            $tarea->save();
         }
-        session()->flash('msg','Tarea cambiada correctamente');
+        session()->flash('msg',__('messages.tarea_cambiada'));
         session()->flash('tipoAlert','success');
         return redirect('/home');
 
@@ -75,7 +83,7 @@ class HomeController extends Controller
 
        public function eliminar($id=null){
          if (!isset($id)) {
-           session()->flash('msg','No se ha podido realizar la operación');
+           session()->flash('msg',__('messages.no_se_ha_podido'));
            session()->flash('tipoAlert','danger');
            return redirect ('/home');
          }
@@ -85,7 +93,7 @@ class HomeController extends Controller
 
             $tarea->delete();
          }
-         session()->flash('msg','Tarea eliminada correctamente');
+         session()->flash('msg',__('messages.tarea_eliminada'));
          session()->flash('tipoAlert','success');
          return redirect('/home');
 

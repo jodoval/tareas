@@ -20,7 +20,10 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index');
 Route::get('/cambiar-estado/{id?}/{estado?}', 'HomeController@cambiarEstado');
 Route::get('/eliminar/{id?}', 'HomeController@eliminar');
-
+Route::get ('/idioma/{id}',function ($id){
+  session()->put('idioma',$id);
+  return back();
+});
 
 //post
 route::post('crear-tarea','HomeController@crearTarea');

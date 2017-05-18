@@ -6,17 +6,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Crear Tarea</h4>
+        <h4 class="modal-title" id="myModalLabel">  {{__('messages.crear_tarea')}}</h4>
       </div>
       <form action="{{url('crear-tarea')}}" method="post">
         {{csrf_field()}}
       <div class="modal-body">
-            <input type="text" name="texto" class="form-control" placeholder="Escribe una tarea ....">
+            <input type="text" name="texto" class="form-control" placeholder="  {{__('messages.escribir_una_tarea')}}">
 
       </div>
 
       <div class="modal-footer">
-      <input type="submit" class="btn btn-primary" value="Guardar">
+      <input type="submit" class="btn btn-primary" value="  {{__('messages.salvar')}}">
       </div>
       </form>
     </div>
@@ -33,7 +33,7 @@
           </div>
 
           <div class="panel panel-default">
-                <div class="panel-heading">Mis Tareas</div>
+                <div class="panel-heading">{{__('messages.mis_tareas')}}</div>
 
                 <div class="panel-body">
                   <table class="table">
@@ -47,7 +47,20 @@
                         <tr>
                     @endif
                       <td>{{$tarea->texto}}</td>
-                      <td>{{$tarea->estado}}</td>
+                     <td>
+                        @if ($tarea->estado==='Pendiente')
+                            {{__('messages.pendiente')}}
+                        @elseif ($tarea->estado===" En proceso")
+                              {{__('messages.en_proceso')}}
+                        @else
+                            {{__('messages.completada')}}
+                        @endif
+                      </td>
+
+
+
+
+
                       <td class="text-right">
                         @if ($tarea->estado==='Pendiente')
                           <a href="{{url ('/cambiar-estado',[$tarea->id,1])}}" class="btn btn-success btn-xs"><i class="fa fa-play fa-fw"></i></a>

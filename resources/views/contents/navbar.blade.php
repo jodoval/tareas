@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'TAREAS') }}
+                  {{ config('app.name', 'TAREAS') }}
             </a>
         </div>
 
@@ -39,7 +39,7 @@
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
+                                    {{__('messages.salir')}}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -50,6 +50,29 @@
                     </li>
                 @endif
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  {{__('messages.idioma2')}} <span class="caret"></span>
+                </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{{url('/idioma/es')}}"><img src={{asset('img/spanish.jpg')}} alt="Español"> Español</a>
+                </li>
+                <li>
+                  <a href="{{url('/idioma/en')}}"><img src={{asset('img/uk.png')}} alt="English"> English</a>
+                </li>
+              </ul>
+
+              </li>
+
+            </ul>
+
+
+
+
+
         </div>
     </div>
 </nav>
