@@ -49,7 +49,7 @@ class HomeController extends Controller
       alert()->success(__('messages.creada_la_tarea'))->persistent(__('messages.cerrar'));  //usando sweet alerts
       // session()->flash('msg','Tarea creada correctamente');
       // session()->flash('tipoAlert','success');
-      return redirect ('/home');
+      return redirect()->route('inicio');
 
 
     } //fin crearTarea
@@ -59,7 +59,7 @@ class HomeController extends Controller
         if (!isset($id) || !isset($estado)){
           session()->flash('msg',__('messages.no_se_ha_podido'));
           session()->flash('tipoAlert','danger');
-          return redirect ('/home');
+          return redirect()->route('inicio');
         }
 
         $tarea=Task::find($id);
@@ -77,7 +77,7 @@ class HomeController extends Controller
         }
         session()->flash('msg',__('messages.tarea_cambiada'));
         session()->flash('tipoAlert','success');
-        return redirect('/home');
+        return redirect()->route('inicio');
 
     }  //fin cambiarEstado
 
@@ -85,7 +85,7 @@ class HomeController extends Controller
          if (!isset($id)) {
            session()->flash('msg',__('messages.no_se_ha_podido'));
            session()->flash('tipoAlert','danger');
-           return redirect ('/home');
+           return redirect()->route('inicio');
          }
 
          $tarea=Task::find($id);
@@ -95,7 +95,7 @@ class HomeController extends Controller
          }
          session()->flash('msg',__('messages.tarea_eliminada'));
          session()->flash('tipoAlert','success');
-         return redirect('/home');
+         return redirect()->route('inicio');
 
 
        }  //fin eliminar

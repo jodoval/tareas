@@ -8,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">  {{__('messages.crear_tarea')}}</h4>
       </div>
-      <form action="{{url('crear-tarea')}}" method="post">
+      <form action="{{route('crear.tarea')}}" method="post">
         {{csrf_field()}}
       <div class="modal-body">
             <input type="text" name="texto" class="form-control" placeholder="  {{__('messages.escribir_una_tarea')}}">
@@ -63,12 +63,12 @@
 
                       <td class="text-right">
                         @if ($tarea->estado==='Pendiente')
-                          <a href="{{url ('/cambiar-estado',[$tarea->id,1])}}" class="btn btn-success btn-xs"><i class="fa fa-play fa-fw"></i></a>
+                          <a href="{{route ('cambiar.estado',[$tarea->id,1])}}" class="btn btn-warning btn-xs"><i class="fa fa-play fa-fw"></i></a>
                         @endif
                         @if ($tarea->estado==='En proceso')
-                          <a href="{{url ('/cambiar-estado',[$tarea->id,2])}}" class="btn btn-success btn-xs"><i class="fa fa-check fa-fw"></i></a>
+                          <a href="{{route('cambiar.estado',[$tarea->id,2])}}" class="btn btn-success btn-xs"><i class="fa fa-check fa-fw"></i></a>
                         @endif
-                        <a href="{{url ('/eliminar',[$tarea->id])}}" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i></a>
+                        <a href="{{route('eliminar.tarea',[$tarea->id])}}" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i></a>
                       </td>
 
 

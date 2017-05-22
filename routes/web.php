@@ -15,15 +15,15 @@ Auth::routes();
 ///get
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/home', 'HomeController@index');
-Route::get('/cambiar-estado/{id?}/{estado?}', 'HomeController@cambiarEstado');
-Route::get('/eliminar/{id?}', 'HomeController@eliminar');
+Route::get('/home', 'HomeController@index')->name('inicio');
+Route::get('/cambiar-estado/{id?}/{estado?}', 'HomeController@cambiarEstado')->name('cambiar.estado');
+Route::get('/eliminar/{id?}', 'HomeController@eliminar')->name('eliminar.tarea');
 Route::get ('/idioma/{id}',function ($id){
   session()->put('idioma',$id);
   return back();
-});
+})->name('idioma');
 
 //post
-route::post('crear-tarea','HomeController@crearTarea');
+route::post('crear-tarea','HomeController@crearTarea')->name('crear.tarea');
