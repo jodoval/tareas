@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Task;
 use Auth;
 use App;
+use Hash;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -99,6 +101,41 @@ class HomeController extends Controller
 
 
        }  //fin eliminar
+
+
+       public function verConfiguracion(){
+         return view ('config');
+       }
+
+
+       public function cambiarPass(Request $request){
+         $this->validate ($request,[
+           'oldPass'=>'required|string',
+           'newPass1'=>'required|string|min:8',
+           'newPass2'=>'required|string|min:8',
+         ]);
+
+         if (Hash::check($request->oldPass,Auth::user()->password)){
+           if ($request->newPass1 === $request->newPass2){
+                 $usuario=User::find(Auth::id());
+                 $usuario->password=Hash::make($request->newPass1);
+                 $usuario->save();
+                 session()->flash('msg',__('messages.pass_modificada'));
+                 session()->flash('tipoAlert','success');
+            }else{
+              session()->flash('msg',__('messages.pass_distintas'));
+              session()->flash('tipoAlert','danger');
+            }
+          }else{
+            session()->flash('msg',__('messages.pass_incorrecta'));
+            session()->flash('tipoAlert','danger');
+          }
+
+          return redirect()->route('configuracion');
+
+        }    //fin cambiar pass
+
+
 
 
 

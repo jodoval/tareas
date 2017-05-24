@@ -24,6 +24,8 @@ Route::get ('/idioma/{id}',function ($id){
   session()->put('idioma',$id);
   return back();
 })->name('idioma');
+Route::get('config','HomeController@verConfiguracion')->name('configuracion');
 
 //post
 route::post('crear-tarea','HomeController@crearTarea')->name('crear.tarea');
+Route::post('config','HomeController@cambiarPass')->name('cambiar.pass');

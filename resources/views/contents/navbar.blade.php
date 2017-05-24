@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ route('inicio')}}">
                   {{ config('app.name', 'TAREAS') }}
             </a>
         </div>
@@ -35,6 +35,10 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                              <a href="{{route('configuracion')}}">{{__('messages.configuracion')}}</a>
+                            </li>
+                          <li class="divider"></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

@@ -19,5 +19,13 @@ return [
   'no_se_ha_podido'=>'Operation could not be performed',
   'tarea_cambiada'=>'Status of the Task Changed',
   'tarea_eliminada'=>'Deleted task',
-
+  'configuracion'=>'Configuration',
+  'cambiar_contraseña'=>'Change Password',
+  'anterior_contraseña'=>'Last Password',
+  'nueva_contraseña'=>'New Password',
+  'confirmar_contraseña'=>'Confirm Password',
+  'inicio'=>"Home",
+  'pass_modificada'=>'Your Password has been changed',
+  'pass_distintas'=>'Passwords do not match',
+  'pass_incorrecta'=>'Incorrect Password',
 ];
