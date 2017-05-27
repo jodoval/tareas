@@ -28,4 +28,6 @@ return [
   'pass_modificada'=>'Your Password has been changed',
   'pass_distintas'=>'Passwords do not match',
   'pass_incorrecta'=>'Incorrect Password',
+  'principal'=>'Homepage',
+
 ];

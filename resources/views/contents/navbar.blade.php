@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ route('inicio')}}">
-                  {{ config('app.name', 'TAREAS') }}
+                  {{__('messages.principal')}}
             </a>
         </div>
 

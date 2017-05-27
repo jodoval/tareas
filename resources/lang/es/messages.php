@@ -28,6 +28,7 @@ return [
   'pass_modificada'=>'Se ha modificado la contraseña',
   'pass_distintas'=>'Las contraseñas no coinciden',
   'pass_incorrecta'=>'Contraseña incorrecta',
+  'principal'=>'Página Principal',
 
 
 ];

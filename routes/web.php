@@ -26,6 +26,13 @@ Route::get ('/idioma/{id}',function ($id){
 })->name('idioma');
 Route::get('config','HomeController@verConfiguracion')->name('configuracion');
 
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+
+
 //post
 route::post('crear-tarea','HomeController@crearTarea')->name('crear.tarea');
 Route::post('config','HomeController@cambiarPass')->name('cambiar.pass');
