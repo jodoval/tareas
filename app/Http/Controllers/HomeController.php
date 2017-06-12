@@ -35,7 +35,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tareas=Task::where('user_id',Auth::id())->orderBy('created_at','desc')->paginate(5);
+      //  $tareas=Task::where('user_id',Auth::id())->orderBy('created_at','desc')->paginate(5);
+      $tareas=User::find(Auth::id())->tasks()->orderBy('created_at','desc')->paginate(5);
         return view ('home',['tareas'=>$tareas]);
     }
 
@@ -43,10 +44,13 @@ class HomeController extends Controller
       $this->validate ($request,[
         'texto'=>'required|string|max:191'
       ]);
-      $tarea=new Task();
-      $tarea->texto=$request->texto;
-      $tarea->user_id=Auth::id();
-      $tarea->save();
+      // $tarea=new Task();
+      // $tarea->texto=$request->texto;
+      // $tarea->user_id=Auth::id();
+      // $tarea->save();
+      $tarea=new Task(['texto'=>$request->texto]);
+      $usuario=User::find(Auth::id());
+      $usuario->tasks()->save($tarea);
 
       alert()->success(__('messages.creada_la_tarea'))->persistent(__('messages.cerrar'));  //usando sweet alerts
       // session()->flash('msg','Tarea creada correctamente');
