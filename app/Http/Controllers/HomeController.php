@@ -8,6 +8,7 @@ use Auth;
 use App;
 use Hash;
 use App\User;
+use Log;
 
 class HomeController extends Controller
 {
@@ -98,9 +99,15 @@ class HomeController extends Controller
          if ($tarea->user_id===Auth::id()) {   //controla que sea el usuario de la sesion
 
             $tarea->delete();
+            session()->flash('msg',__('messages.tarea_eliminada'));
+            session()->flash('tipoAlert','success');
+         }else{
+           Log::notice('Intento de eliminación fallido',[
+             'id'=>Auth::id(),
+             'tarea'=>$id,
+           ]);
          }
-         session()->flash('msg',__('messages.tarea_eliminada'));
-         session()->flash('tipoAlert','success');
+
          return redirect()->route('inicio');
 
 
