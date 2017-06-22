@@ -24,7 +24,7 @@ Route::get ('/idioma/{id}',function ($id){
   session()->put('idioma',$id);
   return back();
 })->name('idioma');
-Route::get('config','HomeController@verConfiguracion')->name('configuracion');
+Route::get('/configuracion','HomeController@verConfiguracion')->name('configuracion');
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider');
